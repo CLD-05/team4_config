@@ -11,8 +11,18 @@ secrets/
 *.key
 kubeconfig
 .env
+.env.*
+
+*-secret.yaml
+*-secrets.yaml
 
 .DS_Store
+Thumbs.db
 
 .idea/
 .vscode/
+*.iml
+
+*.tmp
+*.bak
+*.swp
