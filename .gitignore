@@ -13,15 +13,37 @@ kubeconfig
 .env
 .env.*
 
+secrets/
 *-secret.yaml
 *-secrets.yaml
+*secret*.yaml
+*secret*.yml
+.env
+.env.*
+*.local
 
-.DS_Store
+.aws/
+credentials
+*.pem
+*.pub
+*.key
+
 Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
 
 .idea/
 .vscode/
 *.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
 
 *.tmp
 *.bak
