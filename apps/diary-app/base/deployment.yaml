@@ -15,6 +15,7 @@ spec:
       labels:
         app: diary-app
     spec:
+      serviceAccountName: diary-app-sa
       containers:
         - name: diary-app
           # ECR 이미지 빌드 완료 후 해당 주소로 교체
