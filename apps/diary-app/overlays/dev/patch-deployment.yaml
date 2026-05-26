@@ -10,7 +10,7 @@ spec:
       containers:
         - name: diary-app
           # ECR 이미지 완성 전까지 임시 유지
-          image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4/app
+          image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4/app:latest
           resources:
             requests:
               cpu: "100m"      # dev는 낮은 사양

@@ -10,7 +10,7 @@ spec:
       containers:
         - name: diary-app
           # CI 완성 후 ECR 주소로 교체 예정
-          # image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4/app
+          # image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4/app:latest
           image: nginx:stable-alpine
           resources:
             requests:
