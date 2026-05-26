@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diary-app
+  namespace: diary-app
+spec:
+  replicas: 1          # dev는 1개로 절약
+  template:
+    spec:
+      containers:
+        - name: diary-app
+          # 5번 담당자 ECR 이미지 완성 전까지 임시 유지
+          image: nginx:stable-alpine
+          resources:
+            requests:
+              cpu: "100m"      # dev는 낮은 사양
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"

@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: diary-app
+  namespace: argocd          # ArgoCD가 설치된 네임스페이스
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/CLD-05/team4_config   # 팀 실제 레포 주소로 변경
+    targetRevision: main
+    path: apps/diary-app/overlays/prod               # prod overlay 경로 추적
+
+  destination:
+    server: https://kubernetes.default.svc           # EKS 클러스터 내부 주소
+    namespace: diary-app
+
+  syncPolicy:
+    # 학습 단계는 manual sync 권장
+    syncOptions:
+      - CreateNamespace=true
+    # 운영 전환 시 아래 주석 해제
+    # automated:
+    #   prune: true
+    #   selfHeal: true

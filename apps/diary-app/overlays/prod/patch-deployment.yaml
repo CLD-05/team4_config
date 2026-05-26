@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diary-app
+  namespace: diary-app
+spec:
+  replicas: 2          # prod는 고가용성 2개 유지
+  template:
+    spec:
+      containers:
+        - name: diary-app
+          # CI 완성 후 ECR 주소로 교체 예정
+          # image: <account>.dkr.ecr.ap-northeast-2.amazonaws.com/team4/diary-app:<sha>
+          image: nginx:stable-alpine
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"

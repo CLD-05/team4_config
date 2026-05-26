@@ -6,3 +6,5 @@ namespace: diary-app
 resources:
   - deployment.yaml
   - service.yaml
+  - configmap.yaml
+  - secret.yaml

@@ -20,19 +20,12 @@ spec:
           # ECR 이미지 빌드 완료 후 해당 주소로 교체
           image: nginx:stable-alpine
           ports:
-            - containerPort: 8080
-          # ── 환경변수: RDS 접속 정보 (인프라 완료 후 ConfigMap/Secret으로 분리)
-          env:
-            - name: DB_HOST
-              value: "localhost"
-            - name: DB_PORT
-              value: "3306"
-            - name: DB_NAME
-              value: "diarydb"
-            - name: DB_USERNAME
-              value: "root"
-            - name: DB_PASSWORD
-              value: "changeme"   # 추후 Secret으로 교체 필수
+            - containerPort: 808
+          envFrom:
+            - configMapRef:
+                name: diary-app-config    # configmap.yaml 참조
+            - secretRef:
+                name: diary-app-secret    # secret.yaml 참조
           resources:
             requests:
               cpu: "250m"
