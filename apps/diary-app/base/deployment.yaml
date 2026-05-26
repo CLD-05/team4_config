@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diary-app
+  namespace: diary-app
+  labels:
+    app: diary-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: diary-app
+  template:
+    metadata:
+      labels:
+        app: diary-app
+    spec:
+      containers:
+        - name: diary-app
+          # ECR 이미지 빌드 완료 후 해당 주소로 교체
+          image: nginx:stable-alpine
+          ports:
+            - containerPort: 8080
+          # ── 환경변수: RDS 접속 정보 (인프라 완료 후 ConfigMap/Secret으로 분리)
+          env:
+            - name: DB_HOST
+              value: "localhost"
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_NAME
+              value: "diarydb"
+            - name: DB_USERNAME
+              value: "root"
+            - name: DB_PASSWORD
+              value: "changeme"   # 추후 Secret으로 교체 필수
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          # 트래픽 허용 전 준비 확인
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 5
+            failureThreshold: 3
+          # 컨테이너 비정상 시 재시작
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3
