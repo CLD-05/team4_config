@@ -8,7 +8,7 @@ spec:
   sourceRepos:
     - https://github.com/CLD-05/team4_config.git
   destinations:
-    - namespace: diary-app
+    - namespace: diary-app-prod
       server: https://kubernetes.default.svc
     - namespace: diary-app-dev
       server: https://kubernetes.default.svc

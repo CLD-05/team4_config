@@ -2,18 +2,18 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: diary-app-prod
-  namespace: argocd          # ArgoCD가 설치된 네임스페이스
+  namespace: argocd # ArgoCD가 설치된 네임스페이스
 spec:
   project: team4-project
 
   source:
-    repoURL: https://github.com/CLD-05/team4_config.git   # 팀 실제 레포 주소로 변경
+    repoURL: https://github.com/CLD-05/team4_config.git # 팀 실제 레포 주소로 변경
     targetRevision: main
-    path: apps/diary-app/overlays/prod               # prod overlay 경로 추적
+    path: apps/diary-app/overlays/prod # prod overlay 경로 추적
 
   destination:
-    server: https://kubernetes.default.svc           # EKS 클러스터 내부 주소
-    namespace: diary-app
+    server: https://kubernetes.default.svc # EKS 클러스터 내부 주소
+    namespace: diary-app-prod
 
   syncPolicy:
     # 학습 단계는 manual sync 권장
