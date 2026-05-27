@@ -14,4 +14,4 @@ patches:
 images:
 - name: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api
   newName: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api
-  newTag: b5df7821841ecf9506bd8903dcc353718d8a6ddf
+  newTag: b9e4f84dd1f3c66b0dc6c6db6dc2e2d8803261ac
