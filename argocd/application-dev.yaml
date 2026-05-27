@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: diary-app-dev
+  namespace: argocd
+spec:
+  project: team4-project
+  source:
+    repoURL: https://github.com/CLD-05/team4_config.git
+    targetRevision: main
+    path: apps/diary-app/overlays/dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: diary-app-dev
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    # automated:
+    #   prune: true
+    #   selfHeal: true

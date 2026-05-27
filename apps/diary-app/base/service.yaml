@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: diary-app-service
+  namespace: diary-app
+  labels:
+    app: diary-app
+spec:
+  type: ClusterIP          # 외부 노출은 Ingress(ALB) 경유
+  selector:
+    app: diary-app         # deployment label과 반드시 일치
+  ports:
+    - protocol: TCP
+      port: 80             # 서비스가 받는 포트
+      targetPort: 8080     # 컨테이너 내부 포트(containerPort)와 일치

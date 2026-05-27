@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: diary-app-config
+  namespace: diary-app
+data:
+  DB_HOST: "team4-rds.cx482c6a63zp.ap-northeast-2.rds.amazonaws.com"          # 인프라 RDS 완성 후 엔드포인트로 교체
+  DB_PORT: "3306"
+  DB_NAME: "diarydb"
+  DB_USERNAME: "root"

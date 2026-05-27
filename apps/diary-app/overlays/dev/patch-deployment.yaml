@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diary-app
+  namespace: diary-app-dev
+spec:
+  replicas: 1 # dev는 1개로 절약
+  template:
+    spec:
+      containers:
+        - name: diary-app
+          image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api:latest
+          resources:
+            requests:
+              cpu: "100m" # dev는 낮은 사양
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
