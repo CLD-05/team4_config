@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diary-app
+  namespace: diary-app
+  labels:
+    app: diary-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: diary-app
+  template:
+    metadata:
+      labels:
+        app: diary-app
+    spec:
+      serviceAccountName: diary-app-sa
+      containers:
+        - name: diary-app
+          # ECR 이미지 빌드 완료 후 해당 주소로 교체
+          image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api:latest
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: diary-app-config # configmap.yaml 참조
+            - secretRef:
+                name: diary-app-secret # secret.yaml 참조
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          # 트래픽 허용 전 준비 확인
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 5
+            failureThreshold: 3
+          # 컨테이너 비정상 시 재시작
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 3

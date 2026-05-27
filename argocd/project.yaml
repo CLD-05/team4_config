@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: team4-project
+  namespace: argocd
+spec:
+  description: team4 gitops project
+  sourceRepos:
+    - https://github.com/CLD-05/team4_config.git
+  destinations:
+    - namespace: diary-app-prod
+      server: https://kubernetes.default.svc
+    - namespace: diary-app-dev
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
