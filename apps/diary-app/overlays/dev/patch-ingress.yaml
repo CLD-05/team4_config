@@ -1,0 +1,6 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: diary-app-ingress
+  annotations:
+    alb.ingress.kubernetes.io/load-balancer-name: team4-diaryapp-dev-alb
