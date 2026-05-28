@@ -18,11 +18,9 @@ spec:
       serviceAccountName: diary-app-sa
       containers:
         - name: diary-app
-          # ECR 이미지 빌드 완료 후 해당 주소로 교체
-          # image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api:latest
-          image: nginx:latest
+          image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api:latest
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           envFrom:
             - configMapRef:
                 name: diary-app-config # configmap.yaml 참조
@@ -38,16 +36,16 @@ spec:
           # 트래픽 허용 전 준비 확인
           readinessProbe:
             httpGet:
-              path: /
-              port: 80
+              path: /actuator/health
+              port: 8080
             initialDelaySeconds: 60
             periodSeconds: 5
             failureThreshold: 3
           # 컨테이너 비정상 시 재시작
           livenessProbe:
             httpGet:
-              path: /
-              port: 80
+              path: /actuator/health
+              port: 8080
             initialDelaySeconds: 90
             periodSeconds: 10
             failureThreshold: 3
