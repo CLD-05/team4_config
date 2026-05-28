@@ -19,7 +19,7 @@ spec:
       containers:
         - name: diary-app
           # ECR 이미지 빌드 완료 후 해당 주소로 교체
-          image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api:latest
+          image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api:d9a9a836d09c4506518fda3f4cd6b2af10feeeb7
           ports:
             - containerPort: 8080
           envFrom:
