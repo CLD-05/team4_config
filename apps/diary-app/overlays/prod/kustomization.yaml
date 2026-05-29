@@ -4,14 +4,10 @@ kind: Kustomization
 namespace: diary-app-prod
 
 resources:
-- ../../base
+  - ../../base
 
 patches:
-- path: patch-deployment.yaml
-  target:
-    kind: Deployment
-    name: diary-app
-images:
-- name: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api
-  newName: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api
-  newTag: b9e4f84dd1f3c66b0dc6c6db6dc2e2d8803261ac
+  - path: patch-deployment.yaml
+    target:
+      kind: Deployment
+      name: diary-app
