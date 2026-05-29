@@ -20,8 +20,10 @@ metadata:
     alb.ingress.kubernetes.io/subnets: subnet-05cf9fbeb6126af1b, subnet-0f2a72a8e9732255b
 
     # 운영 전환 시 HTTPS 적용 (ACM 인증서 ARN 발급 후 주석 해제)
-    # alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
-    # alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:<account>:certificate/<id>
+    annotations:
+      "alb.ingress.kubernetes.io/listen-ports": '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:194722398200:certificate/e47c0227-58c5-4c74-8135-a4fef9a711f1
 spec:
   rules:
     - http:
