@@ -11,6 +11,11 @@ metadata:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/load-balancer-name: team4-diaryapp-prod-alb
     alb.ingress.kubernetes.io/tags: team=team4
+
+    alb.ingress.kubernetes.io/healthcheck-path: /actuator/health
+    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
+    alb.ingress.kubernetes.io/success-codes: "200"
+
     # EKS 서브넷 태그 연동 (인프라팀 Terraform 완료 후 확인)
     alb.ingress.kubernetes.io/subnets: subnet-05cf9fbeb6126af1b, subnet-0f2a72a8e9732255b
 
