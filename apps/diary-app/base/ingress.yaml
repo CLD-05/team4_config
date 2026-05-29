@@ -4,26 +4,18 @@ metadata:
   name: diary-app-ingress
   namespace: diary-app
   annotations:
-    # AWS ALB Controller 필수 어노테이션
     kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing # 인터넷에서 접근 가능
-    alb.ingress.kubernetes.io/target-type: ip # Pod IP로 직접 라우팅
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:194722398200:certificate/e47c0227-58c5-4c74-8135-a4fef9a711f1
     alb.ingress.kubernetes.io/load-balancer-name: team4-diaryapp-prod-alb
     alb.ingress.kubernetes.io/tags: team=team4
-
     alb.ingress.kubernetes.io/healthcheck-path: /actuator/health
     alb.ingress.kubernetes.io/healthcheck-port: traffic-port
     alb.ingress.kubernetes.io/success-codes: "200"
-
-    # EKS 서브넷 태그 연동 (인프라팀 Terraform 완료 후 확인)
     alb.ingress.kubernetes.io/subnets: subnet-05cf9fbeb6126af1b, subnet-0f2a72a8e9732255b
-
-    # 운영 전환 시 HTTPS 적용 (ACM 인증서 ARN 발급 후 주석 해제)
-    annotations:
-      "alb.ingress.kubernetes.io/listen-ports": '[{"HTTP": 80}, {"HTTPS": 443}]'
-    alb.ingress.kubernetes.io/ssl-redirect: "443"
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:194722398200:certificate/e47c0227-58c5-4c74-8135-a4fef9a711f1
 spec:
   rules:
     - http:
@@ -32,6 +24,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: diary-app-service # service.yaml의 name과 반드시 일치
+                name: diary-app-service
                 port:
                   number: 80
