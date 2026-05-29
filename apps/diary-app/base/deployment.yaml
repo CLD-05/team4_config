@@ -40,7 +40,8 @@ spec:
               path: /actuator/health
               port: 8080
             initialDelaySeconds: 60
-            periodSeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 5
             failureThreshold: 3
           # 컨테이너 비정상 시 재시작
           livenessProbe:
@@ -49,4 +50,5 @@ spec:
               port: 8080
             initialDelaySeconds: 90
             periodSeconds: 10
+            timeoutSeconds: 5
             failureThreshold: 3
