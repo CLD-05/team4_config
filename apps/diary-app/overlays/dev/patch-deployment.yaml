@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: diary-app
-          image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api:75aa4118729abb3f4eb312ffd84fa0d76b2a1e27
+          image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api:e4933a9f2ab50c4bde36c751f8a12c7c5ff9567c
           resources:
             requests:
               cpu: "250m" # dev는 낮은 사양
