@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: diary-app
-          image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api:3fd1e801f5084e0938db4147a3472a194df2e1b0
+          image: 194722398200.dkr.ecr.ap-northeast-2.amazonaws.com/team4-backend-api:845fafc2fc569ab8b1872c841e5c9d6116752618
           resources:
             requests:
               cpu: "250m"
