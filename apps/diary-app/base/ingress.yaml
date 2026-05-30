@@ -2,7 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: diary-app-ingress
-  namespace: diary-app
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
@@ -15,7 +14,6 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-path: /actuator/health
     alb.ingress.kubernetes.io/healthcheck-port: traffic-port
     alb.ingress.kubernetes.io/success-codes: "200"
-    alb.ingress.kubernetes.io/subnets: subnet-05cf9fbeb6126af1b, subnet-0f2a72a8e9732255b
 spec:
   rules:
     - http:
