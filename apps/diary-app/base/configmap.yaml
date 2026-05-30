@@ -6,3 +6,6 @@ data:
   DB_PORT: "3306"
   DB_NAME: "diarydb"
   DB_USERNAME: "admin"
+  AWS_S3_BUCKET: "team4-diary-images"
+  AWS_CLOUDFRONT_DOMAIN: "d7sqkcqvvfizr.cloudfront.net"
+  AWS_S3_REGION: "ap-northeast-2"
